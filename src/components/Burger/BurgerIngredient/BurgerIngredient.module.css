@@ -110,3 +110,37 @@
   background: linear-gradient(#bf3813, #c45e38);
   margin: 2% auto;
 }
+
+.PickleWrapper {
+  width: 80%;
+  height: 2%;
+  margin: 2% auto;
+  position: relative;
+  margin-top: -10px;
+}
+
+.Pickle {
+  background: #20581d;
+  width: 30%;
+  height: 100%;
+  position: absolute;
+  margin: 2%;
+  left: 10%;
+}
+
+.PickleIntermediate {
+  background: white;
+  width: 20%;
+  height: 100%;
+  margin: 2%;
+  left: 30%;
+}
+
+.Pickle2 {
+  background: #20581d;
+  width: 30%;
+  height: 100%;
+  position: absolute;
+  margin: 2%;
+  left: 60%;
+}

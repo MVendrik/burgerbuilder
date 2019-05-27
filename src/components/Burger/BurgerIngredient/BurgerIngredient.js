@@ -18,6 +18,16 @@ class BurgerIngredient extends Component {
           </div>
         );
         break;
+      case "pickle":
+        ingredient = (
+          <div className={classes.PickleWrapper}>
+            <span className={classes.Pickle} />
+            <span className={classes.PickleIntermediate} />
+            <span className={classes.Pickle2} />
+          </div>
+        );
+
+        break;
       case "meat":
         ingredient = <div className={classes.Meat} />;
         break;
@@ -30,6 +40,7 @@ class BurgerIngredient extends Component {
       case "bacon":
         ingredient = <div className={classes.Bacon} />;
         break;
+
       default:
         ingredient = null;
     }
