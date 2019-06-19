@@ -1,4 +1,4 @@
-import { takeEvery } from "redux-saga/effects";
+import { takeEvery, all, takeLatest } from "redux-saga/effects";
 
 import * as actionTypes from "../actions/actionTypes";
 import {
@@ -11,10 +11,13 @@ import { initIngredientsSaga } from "./burgerBuilder";
 import { purchaseBurgerSaga, fetchOrdersSaga } from "./order";
 
 export function* watchAuth() {
-  yield takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga);
-  yield takeEvery(actionTypes.AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga);
-  yield takeEvery(actionTypes.AUTH, authSaga);
-  yield takeEvery(actionTypes.AUTH_CHECK_INITIAL_STATE, authCheckStateSaga);
+  // use all to run simultaneously.
+  yield all([
+    takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga),
+    takeEvery(actionTypes.AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga),
+    takeEvery(actionTypes.AUTH, authSaga),
+    takeEvery(actionTypes.AUTH_CHECK_INITIAL_STATE, authCheckStateSaga)
+  ]);
 }
 
 export function* watchBurgerBuilder() {
@@ -22,6 +25,7 @@ export function* watchBurgerBuilder() {
 }
 
 export function* watchOrder() {
-  yield takeEvery(actionTypes.PUCHASE_BURGER, purchaseBurgerSaga);
+  // takeLatest will make sure only latest action, cancel any other clicks.
+  yield takeLatest(actionTypes.PUCHASE_BURGER, purchaseBurgerSaga);
   yield takeEvery(actionTypes.FETCH_ORDERS, fetchOrdersSaga);
 }
